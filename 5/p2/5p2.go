@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sort"
 
 	"../../lib"
@@ -48,7 +49,14 @@ func main() {
 		seatIds = append(seatIds, minRows*8+minCols)
 	}
 	sort.Ints(seatIds)
-	for _, id := range seatIds {
-		println(id)
+	cur := seatIds[0]
+	next := seatIds[0]
+	for i := 0; i < len(seatIds); i++ {
+		if next != seatIds[i] {
+			fmt.Printf("%d %d", i, next)
+			break
+		}
+		cur = seatIds[i]
+		next = cur + 1
 	}
 }

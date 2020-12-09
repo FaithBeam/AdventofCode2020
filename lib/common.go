@@ -77,3 +77,40 @@ func NumberOfEmptyLines(lines []string) (numBreaks int) {
 	}
 	return
 }
+
+/* taken from https://stackoverflow.com/a/18203895
+xs := []int{2, 4, 6, 8}
+ys := []string{"C", "B", "K", "A"}
+fmt.Println(
+    SliceIndex(len(xs), func(i int) bool { return xs[i] == 5 }),
+    SliceIndex(len(xs), func(i int) bool { return xs[i] == 6 }),
+    SliceIndex(len(ys), func(i int) bool { return ys[i] == "Z" }),
+    SliceIndex(len(ys), func(i int) bool { return ys[i] == "A" }))
+*/
+func SliceIndex(limit int, predicate func(i int) bool) int {
+	for i := 0; i < limit; i++ {
+		if predicate(i) {
+			return i
+		}
+	}
+	return -1
+}
+
+// taken from https://stackoverflow.com/a/34259943
+func Min(v []int) (m int) {
+	for i, e := range v {
+		if i == 0 || e < m {
+			m = e
+		}
+	}
+	return
+}
+
+func Max(v []int) (m int) {
+	for i, e := range v {
+		if i == 0 || e > m {
+			m = e
+		}
+	}
+	return
+}

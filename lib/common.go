@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"log"
 	"os"
+	"strconv"
 )
 
 func ReadFile(input string) (lines []string) {
@@ -18,6 +19,23 @@ func ReadFile(input string) (lines []string) {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
+	}
+	return
+}
+
+func ReadFileInt(input string) (lines []int) {
+	// open file
+	file, err := os.Open(input)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	// Read file
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line, _ := strconv.Atoi(scanner.Text())
+		lines = append(lines, line)
 	}
 	return
 }
